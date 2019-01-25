@@ -1,0 +1,7 @@
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\obj\Debug\Events.csprojAssemblyReference.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\obj\Debug\Events.csproj.CoreCompileInputs.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\bin\Debug\Events.exe.config
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\bin\Debug\Events.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\bin\Debug\Events.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\obj\Debug\Events.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\Events\obj\Debug\Events.pdb
