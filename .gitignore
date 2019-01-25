@@ -2,5 +2,6 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/Events/bin/Debug
+/Events/bin
+/Events/obj
 /.vs
