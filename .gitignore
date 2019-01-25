@@ -4,3 +4,5 @@
 
 /.vs
 /Events/bin/Debug
+/Events/obj/Debug
+/Events/obj/Release
