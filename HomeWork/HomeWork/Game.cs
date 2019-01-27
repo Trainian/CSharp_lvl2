@@ -18,11 +18,18 @@ namespace HomeWork
 
         static public BaseObject[] objs;
 
-        static Game()
-        { }
+        static public Bullet bullet;
+
+        static public Asteroid[] asteroids;
+
+        static public Random rnd = new Random();
 
         static public void Init(Form form)
         {
+            if (form.Height >= 1000|| form.Width >= 1000)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             Graphics g;
             context = BufferedGraphicsManager.Current;
             g = form.CreateGraphics();
@@ -48,6 +55,11 @@ namespace HomeWork
             {
                 obj.Draw();
             }
+            foreach (Asteroid ast in asteroids)
+            {
+                ast.Draw();
+            }
+            bullet.Draw();
             buffer.Render();
         }
 
@@ -57,26 +69,48 @@ namespace HomeWork
             {
                 obj.Update();
             }
+
+            foreach (Asteroid ast in asteroids)
+            {
+                ast.Update();
+                if (ast.Collision(bullet))
+                {
+                    System.Media.SystemSounds.Hand.Play();
+                }
+            }
+            bullet.Update();
         }
 
         static public void Load()
         {
             objs = new BaseObject[30];
-            int x = 0;
-            for (int i = 0; i < objs.Length/3; i++)
+            bullet = new Bullet(new Point(0,200), new Point(20,0), new Size(4,1));
+            asteroids = new Asteroid[3];
+            for (int i = 0; i < objs.Length; i++)
             {
-                objs[i] = new BaseObject(new Point(600, i * 20), new Point(-i,-i), new Size(10,10));
+                int r = rnd.Next(5, 50);
+                objs[i] = new Star(new Point(1000, Game.rnd.Next(0,Game.Height)), new Point(-r,r),new Size(3,3));
             }
 
-            for (int i = objs.Length/3; i < objs.Length/3*2; i++)
+            for (int i = 0; i < asteroids.Length; i++)
             {
-                objs[i] = new Star(new Point(600, i * 20), new Point(- i, 0), new Size(5, 5));
+                int r = rnd.Next(15, 50);
+                asteroids[i] = new Asteroid(new Point(1000, Game.rnd.Next(0,Game.Height)), new Point(-r/3, r),  new Size(r,r));
             }
-            for (int i = objs.Length/3*2; i < objs.Length; i++)
-            {
-                objs[i] = new Planet(new Point(600, i+x), new Point(-i,0), new Size(i,i));
-                x += 80;
-            }
+            //int x = 0;
+            //for (int i = 0; i < objs.Length/3; i++)
+            //{
+            //    //objs[i] = new BaseObject(new Point(600, i * 20), new Point(-i,-i), new Size(10,10));
+            //}
+            //for (int i = objs.Length/3; i < objs.Length/3*2; i++)
+            //{
+            //    objs[i] = new Star(new Point(600, i * 20), new Point(- i, 0), new Size(5, 5));
+            //}
+            //for (int i = objs.Length/3*2; i < objs.Length; i++)
+            //{
+            //    objs[i] = new Planet(new Point(600, i+x), new Point(-i,0), new Size(i-15,i-15));
+            //    x += 80;
+            //}
         }
     }
 }
