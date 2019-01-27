@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs
-/Events/bin/Debug
-/Events/obj/Debug
-/Events/obj/Release
+/Events/bin
+/Events/obj
+/Events/.vs/Events/v15
+/HomeWork/.vs/HomeWork/v15
