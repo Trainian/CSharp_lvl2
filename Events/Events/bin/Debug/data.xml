@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfWorker xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Worker>
+    <Sum>0</Sum>
+    <FirstName>Dima</FirstName>
+    <Organization>Home</Organization>
+  </Worker>
+  <Worker>
+    <Sum>20</Sum>
+    <FirstName>Dima2</FirstName>
+    <Organization>Home2</Organization>
+  </Worker>
+  <Worker>
+    <Sum>330</Sum>
+    <FirstName>Dima3</FirstName>
+    <Organization>Home3</Organization>
+  </Worker>
+</ArrayOfWorker>

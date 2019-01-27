@@ -1,0 +1,9 @@
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\bin\Debug\HomeWork.exe.config
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\bin\Debug\HomeWork.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\bin\Debug\HomeWork.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.csprojAssemblyReference.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.csproj.CoreCompileInputs.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.Properties.Resources.resources
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\HomeWork\obj\Debug\HomeWork.csproj.GenerateResource.cache
