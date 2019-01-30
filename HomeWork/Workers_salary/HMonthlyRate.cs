@@ -8,7 +8,7 @@ namespace Workers_salary
 {
     class HMonthlyRate : Worker
     {
-        public HMonthlyRate(string fio, decimal payment) : base(fio, payment)
+        public HMonthlyRate(string fio, decimal payment, int mass) : base(fio, payment, mass)
         {
         }
 

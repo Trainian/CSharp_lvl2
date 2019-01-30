@@ -4,3 +4,4 @@ C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\HomeWork\Workers_salary\bin\Deb
 C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\HomeWork\Workers_salary\obj\Debug\Workers_salary.csproj.CoreCompileInputs.cache
 C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\HomeWork\Workers_salary\obj\Debug\Workers_salary.exe
 C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\HomeWork\Workers_salary\obj\Debug\Workers_salary.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWork\Workers_salary\obj\Debug\Workers_salary.csprojAssemblyReference.cache

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace Workers_salary
 {
+    /// <summary>
+    /// Предоставляет массив рабочих
+    /// </summary>
     class Worker : IComparable, IEnumerable
     {
         private int[] mass;
         protected string FIO { get; }
         protected decimal Payment { get; set; }
 
-        protected Worker(string fio, decimal payment)
+        public Worker(string fio, decimal payment, int mass) : this(fio, payment)
         {
-            FIO = fio;
+            Random rnd = new Random();
+            this.mass = new int[mass];
+            for (int i = 0; i < mass; i++)
+            {
+                this.mass[i] = i+ rnd.Next(1,100);
+            }
+        }
+
+        protected Worker(string fio, decimal payment) :this(fio)
+        {
             Payment = payment;
         }
 
@@ -24,15 +36,9 @@ namespace Workers_salary
             FIO = fio;
         }
 
-        public Worker(int mass)
-        {
-            this.mass = new int[mass];
-            for (int i = 0; i < mass; i++)
-            {
-                this.mass[i] = i;
-            }
-        }
-
+        /// <summary>
+        /// Нужен для вывода месячной зарплаты
+        /// </summary>
         public virtual void Salary()
         {
 

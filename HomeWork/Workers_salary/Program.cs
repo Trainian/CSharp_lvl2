@@ -13,9 +13,9 @@ namespace Workers_salary
             Console.OutputEncoding = Encoding.UTF8;
             Worker[] workers = new Worker[]
             {
-                new HHourlyRate("Evgeniy Vitoldovich", 1032),
-                new HMonthlyRate("Alina Kotar", 12670),
-                new HHourlyRate("Dmitriy Gorbovskiy", 206),
+                new HHourlyRate("Evgeniy Vitoldovich", 1032, 10),
+                new HMonthlyRate("Alina Kotar", 12670, 10),
+                new HHourlyRate("Dmitriy Gorbovskiy", 206, 10),
             };
             Console.WriteLine("До сортировки массива:");
             foreach (Worker worker in workers)
@@ -23,19 +23,21 @@ namespace Workers_salary
                 worker.Salary();
             }
 
-            Console.WriteLine("\nПосле сортировки массива:");
+            Console.WriteLine("\nПосле сортировки массива, с использованием IComparable:");
             Array.Sort(workers);
             foreach (Worker worker in workers)
             {
                 worker.Salary();
             }
 
-            Console.WriteLine("\nА теперь перечисления при помощи собственного массива:");
-            Worker workers2 = new Worker(3);
-            foreach (var worker in workers2)
+            Console.WriteLine("А теперь используем перечислитель IEnumerator");
+            foreach (var i in workers[0])
             {
-                Console.WriteLine(worker);
+                Console.WriteLine(i);
             }
+
+            Console.WriteLine("Теперь проведем сравнение двух классов worker:");
+            Console.WriteLine(workers[0].CompareTo(workers[1]));
 
             Console.ReadKey();
         }
