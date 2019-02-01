@@ -48,9 +48,11 @@
     <Compile Include="Asteroid.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="EnumEnds.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="HealingBox.cs" />
     <Compile Include="ICollision.cs" />
+    <Compile Include="Journals.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

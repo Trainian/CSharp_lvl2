@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.IO;
 using System.Media;
 using System.Threading;
 using System.Windows.Forms;
@@ -20,13 +21,15 @@ namespace HomeWork
         public static int Height { get; set; }
 
         private static BaseObject[] objs;
-        private static Bullet bullet;
-        private static Asteroid[] asteroids;
+        private static List<Bullet> bullet = new List<Bullet>();
+        private static List<Asteroid> asteroids = new List<Asteroid>();
         private static HealingBox[] healingBoxs;
-        public static Random rnd = new Random();
+        public static Random rnd = new Random(DateTime.Now.Millisecond);
         static Timer timer = new Timer();
         public static int GamePoints = 0;
         static Ship ship = new Ship(new Point(10,400),new Point(5,5),new Size(10,10));
+        public static bool NewGame = true;
+        private static int _maxAsteroids = 3;
 
         static public void Init(Form form)
         {
@@ -41,10 +44,11 @@ namespace HomeWork
             Height = form.Height;
             buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Ship.MessageDie += Finish;
-            Ship.JournalMessager += ConsoleJournal;
-            Ship.JournalMessager += FileJournal;
-            BaseObject.JournalMessager += ConsoleJournal;
+            Ship.MessageEnd += Finish;
+            Ship.JournalMessager += Journals.ConsoleJournal;
+            Ship.JournalMessager += Journals.FileJournal;
+            BaseObject.JournalMessager += Journals.ConsoleJournal;
+            BaseObject.JournalMessager += Journals.FileJournal;
             form.KeyDown += Form_KeyDown;
 
             timer.Interval = 50;
@@ -56,7 +60,10 @@ namespace HomeWork
         {
             if (e.KeyCode == Keys.ControlKey)
             {
-                bullet = new Bullet(new Point(ship.Rect.X + 10, ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1));
+                if (bullet.Count <= 10)
+                {
+                    bullet.Add(new Bullet(new Point(ship.Rect.X + 10, ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1)));
+                }
             }
 
             if (e.KeyCode == Keys.Up)
@@ -87,9 +94,9 @@ namespace HomeWork
                 if (ast != null) ast.Draw();
             }
 
-            if (bullet != null)
+            foreach (Bullet b in bullet)
             {
-                bullet.Draw();
+                b.Draw();
             }
 
             foreach (HealingBox box in healingBoxs)
@@ -107,46 +114,64 @@ namespace HomeWork
 
         static public void Update()
         {
+            if (GamePoints > 20)
+            {
+                ship.Win();
+            }
             foreach (BaseObject obj in objs)
             {
                 obj.Update();
             }
 
-            if (bullet != null)
+            for (int i = 0; i < bullet.Count; i++)
             {
-                bullet.Update();
+                bullet[i].Update();
+                if (bullet[i].afterGameLockation)
+                {
+                    bullet.RemoveAt(i);
+                    i--;
+                }
             }
 
-            for (int i = 0; i < asteroids.Length; i++)
+            if (asteroids.Count <= 0)
+            {
+                _maxAsteroids++;
+                for (int j = 0; j < _maxAsteroids; j++)
+                {
+                    asteroids.Add(new Asteroid());
+                }
+            }
+
+            for (int i = 0; i < asteroids.Count; i++)
             {
                 if (asteroids[i] != null)
                 {
                     asteroids[i].Update();
-                    if (bullet != null && bullet.Collision(asteroids[i]))
+                    for (int j = 0; j < bullet.Count; j++)
                     {
-                        SystemSounds.Hand.Play();
-                        asteroids[i] = null;
-                        bullet = null;
-                        GamePoints++;
-                        continue;
+                        if (i >= 0 && bullet[j].Collision(asteroids[i]))
+                        {
+                            SystemSounds.Hand.Play();
+                            asteroids.RemoveAt(i);
+                            i--;
+                            bullet.RemoveAt(j);
+                            j--;
+                            GamePoints++;
+                            continue;
+                        }
                     }
 
-                    if (ship.Collision(asteroids[i]))
+                    if (i >= 0 && asteroids.Count > 0 && ship.Collision(asteroids[i]))
                     {
-                        ship.EnergyLow(rnd.Next(1,10));
+                        ship.EnergyLow(asteroids[i].Power);
                         SystemSounds.Asterisk.Play();
                         if (ship.Energy <= 0)
                         {
                             ship.Die();
                         }
-                        asteroids[i] = null;
+                        asteroids.RemoveAt(i);
+                        i--;
                     }
-                }
-                else
-                {
-                    int r = rnd.Next(15, 50);
-                    asteroids[i] = new Asteroid(new Point(1000, Game.rnd.Next(0, Game.Height - 50)), new Point(-r / 3, r), new Size(r, r));
-
                 }
             }
 
@@ -163,8 +188,7 @@ namespace HomeWork
                 }
                 else
                 {
-                    int r = rnd.Next(10, 15);
-                    healingBoxs[i] = new HealingBox(new Point(2500, rnd.Next(0, Game.Height - r)), new Point(-10, 25), new Size(r, r));
+                    healingBoxs[i] = new HealingBox();
                 }
             }
         }
@@ -175,44 +199,35 @@ namespace HomeWork
             for (int i = 0; i < objs.Length; i++)
             {
                 int r = rnd.Next(5, 50);
-                objs[i] = new Star(new Point(1000, Game.rnd.Next(0 + 3,Game.Height - 3)), new Point(-r,r),new Size(3,3));
+                objs[i] = new Star();
             }
 
-            asteroids = new Asteroid[3];
-            for (int i = 0; i < asteroids.Length; i++)
+            for (int i = 0; i < _maxAsteroids; i++)
             {
-                int r = rnd.Next(15, 50);
-                asteroids[i] = new Asteroid(new Point(1000, Game.rnd.Next(0 ,Game.Height - 50)), new Point(-r/3, r),  new Size(r,r));
+                asteroids.Add(new Asteroid());
             }
 
             healingBoxs = new HealingBox[1];
             for (int i = 0; i < healingBoxs.Length; i++)
             {
-                int r = rnd.Next(10, 15);
-                healingBoxs[i] = new HealingBox(new Point(2500, rnd.Next(0,Game.Height - r)), new Point(-10,25), new Size(r,r));
+                healingBoxs[i] = new HealingBox();
             }
         }
 
-        public static void Finish()
+        public static void Finish(EnumEnds e)
         {
             timer.Stop();
-            buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60,FontStyle.Underline), Brushes.White,200,100);
+            switch (e)
+            {
+                case EnumEnds.Loss:
+                    buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+                    break;
+                case EnumEnds.Win:
+                    buffer.Graphics.DrawString("You Win!", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+                    break;
+            }
             buffer.Render();
         }
 
-        public static void ConsoleJournal(string str, object obj)
-        {
-            if (obj is ConsoleColor)
-            {
-                Console.ForegroundColor = (ConsoleColor) obj;
-            }
-            Console.WriteLine($"{DateTime.Now} - {str}");
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
-
-        public static void FileJournal(string str, object obj)
-        {
-            //Запись в файл.
-        }
     }
 }
