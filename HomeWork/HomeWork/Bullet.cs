@@ -9,6 +9,7 @@ namespace HomeWork
 {
     class Bullet : BaseObject
     {
+        public bool afterGameLockation = false;
         public Bullet(Point pos, Point dir, Size size) : base(pos, dir, size)
         {
         }
@@ -22,8 +23,7 @@ namespace HomeWork
         {
             if (pos.X > Game.Width)
             {
-                pos.X = 0;
-                pos.Y = Game.rnd.Next(0, Game.Height);
+                afterGameLockation = true;
             }
             pos.X += dir.X;
         }

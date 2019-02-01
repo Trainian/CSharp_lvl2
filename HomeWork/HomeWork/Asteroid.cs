@@ -9,10 +9,22 @@ namespace HomeWork
 {
     class Asteroid : BaseObject,IComparable<Asteroid>
     {
-        private int Power { get; set; } = 3;
+        public int Power { get; set; } = 3;
         public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size)
         {
             Power = Game.rnd.Next(1, 4);
+        }
+
+        public Asteroid() : base()
+        {
+            int r = Game.rnd.Next(15, 50);
+            Power = Game.rnd.Next(1, 4);
+            pos.X = 1000;
+            pos.Y = Game.rnd.Next(0, Game.Height - 50);
+            dir.X = -r / 3;
+            dir.Y = r;
+            size.Width = r;
+            size.Height = r;
         }
 
         public override void Draw()

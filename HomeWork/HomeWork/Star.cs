@@ -13,6 +13,14 @@ namespace HomeWork
         {
         }
 
+        public Star() : base()
+        {
+            int r = Game.rnd.Next(5, 50);
+            pos = new Point(1000, Game.rnd.Next(0 + 3, Game.Height - 3));
+            dir = new Point(-r, r);
+            size = new Size(3, 3);
+        }
+
         public override void Draw()
         {
             Game.buffer.Graphics.DrawLine(Pens.White, pos.X,pos.Y,pos.X + size.Width, pos.Y+ size.Height);

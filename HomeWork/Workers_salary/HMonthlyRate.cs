@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Workers_salary
 {
-    class HMonthlyRate : Worker
+    [Serializable]
+    public class HMonthlyRate : Worker
     {
         public HMonthlyRate(string fio, decimal payment, int mass) : base(fio, payment, mass)
         {
         }
+
+        public HMonthlyRate ()
+        { }
 
         public override void Salary()
         {

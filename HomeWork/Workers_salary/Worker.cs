@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+ using System.Xml.Serialization;
 
-namespace Workers_salary
+ namespace Workers_salary
 {
     /// <summary>
     /// Предоставляет массив рабочих
     /// </summary>
-    class Worker : IComparable, IEnumerable
+    public class Worker : IComparable
     {
-        private int[] mass;
-        protected string FIO { get; }
-        protected decimal Payment { get; set; }
+        public int[] mass;
+        public string FIO { get; set; }
+        public decimal Payment { get; set; }
 
         public Worker(string fio, decimal payment, int mass) : this(fio, payment)
         {
@@ -34,6 +35,10 @@ namespace Workers_salary
         protected Worker(string fio)
         {
             FIO = fio;
+        }
+
+        public Worker()
+        {
         }
 
         /// <summary>
@@ -56,6 +61,11 @@ namespace Workers_salary
             {
                 yield return mass[i];
             }
+        }
+
+        public override string ToString()
+        {
+            return $"ФИО: {FIO} , зарплата: {Payment:C}";
         }
     }
 }

@@ -13,7 +13,7 @@ namespace HomeWork
         private int _energy = 10;
         public int Energy => _energy;
 
-        public static event Message MessageDie;
+        public static event Message MessageEnd;
         public new static event Journal JournalMessager;
 
         public Ship(Point pos, Point dir, Size size) : base(pos, dir, size)
@@ -60,10 +60,19 @@ namespace HomeWork
 
         public void Die()
         {
-            if (MessageDie != null)
+            if (MessageEnd != null)
             {
-                MessageDie();
+                MessageEnd(EnumEnds.Loss);
                 if (JournalMessager != null) JournalMessager("Корабль погиб", ConsoleColor.DarkRed);
+            }
+        }
+
+        public void Win()
+        {
+            if (MessageEnd != null)
+            {
+                MessageEnd(EnumEnds.Win);
+                if (JournalMessager != null) JournalMessager("Вы победили", ConsoleColor.DarkGreen);
             }
         }
     }

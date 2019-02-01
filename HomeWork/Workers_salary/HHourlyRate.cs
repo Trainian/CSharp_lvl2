@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace Workers_salary
 {
-    class HHourlyRate : Worker
+    [Serializable]
+    public class HHourlyRate : Worker
     {
         public HHourlyRate(string fio, decimal payment, int mass) : base(fio,payment,mass)
         {
             this.Payment = (decimal)20.8 * 8 * payment;
+        }
+
+        public HHourlyRate()
+        {
+
         }
         /// <summary>
         /// Выводит зарплату за месяц, а не за день.

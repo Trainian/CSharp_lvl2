@@ -9,7 +9,7 @@ namespace HomeWork
 {
     abstract class BaseObject : ICollision
     {
-        public delegate void Message();
+        public delegate void Message(EnumEnds e);
         public delegate void Journal(string str, object obj);
 
         internal Point pos;
@@ -25,6 +25,10 @@ namespace HomeWork
             this.pos = pos;
             this.dir = dir;
             this.size = size;
+        }
+
+        protected BaseObject()
+        {
         }
 
         public abstract void Draw();

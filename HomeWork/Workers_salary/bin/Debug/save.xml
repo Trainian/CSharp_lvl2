@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<ArrayOfWorker xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Worker xsi:type="HHourlyRate">
+    <mass>
+      <int>96</int>
+      <int>100</int>
+      <int>22</int>
+      <int>13</int>
+      <int>53</int>
+      <int>83</int>
+      <int>26</int>
+      <int>20</int>
+      <int>44</int>
+      <int>91</int>
+    </mass>
+    <FIO>Evgeniy Vitoldovich</FIO>
+    <Payment>171724.8</Payment>
+  </Worker>
+  <Worker xsi:type="HHourlyRate">
+    <mass>
+      <int>96</int>
+      <int>100</int>
+      <int>22</int>
+      <int>13</int>
+      <int>53</int>
+      <int>83</int>
+      <int>26</int>
+      <int>20</int>
+      <int>44</int>
+      <int>91</int>
+      <int>88</int>
+      <int>65</int>
+      <int>29</int>
+      <int>61</int>
+      <int>34</int>
+    </mass>
+    <FIO>Dmitriy Gorbovskiy</FIO>
+    <Payment>34278.4</Payment>
+  </Worker>
+  <Worker xsi:type="HMonthlyRate">
+    <mass>
+      <int>96</int>
+      <int>100</int>
+      <int>22</int>
+      <int>13</int>
+      <int>53</int>
+      <int>83</int>
+      <int>26</int>
+      <int>20</int>
+      <int>44</int>
+      <int>91</int>
+      <int>88</int>
+      <int>65</int>
+      <int>29</int>
+      <int>61</int>
+      <int>34</int>
+      <int>53</int>
+      <int>70</int>
+      <int>104</int>
+      <int>56</int>
+      <int>34</int>
+      <int>91</int>
+      <int>30</int>
+      <int>56</int>
+      <int>48</int>
+      <int>106</int>
+      <int>102</int>
+      <int>55</int>
+      <int>86</int>
+      <int>89</int>
+      <int>42</int>
+    </mass>
+    <FIO>Alina Kotar</FIO>
+    <Payment>12670</Payment>
+  </Worker>
+</ArrayOfWorker>
