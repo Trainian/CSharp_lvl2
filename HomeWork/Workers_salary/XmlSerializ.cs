@@ -16,29 +16,29 @@ namespace Workers_salary
 
         }
 
-        public static void Serialize(List<Worker> workers, string path)
+        public static void Serialize<T>(List<T> list, string path)
         {
-            List<Type> workerTypes = new List<Type>();
-            foreach (Worker worker in workers)
+            List<Type> allTypes = new List<Type>();
+            foreach (T worker in list)
             {
                 Type type = worker.GetType();
-                if (!workerTypes.Contains(type))
+                if (!allTypes.Contains(type))
                 {
-                    workerTypes.Add(type);
+                    allTypes.Add(type);
                 }
             }
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Worker>), workerTypes.ToArray());
+            XmlSerializer serializer = new XmlSerializer(typeof(List<T>), allTypes.ToArray());
             using (Stream stream = new FileStream($"{path}\\save.xml", FileMode.Create))
             {
-                serializer.Serialize(stream, workers);
+                serializer.Serialize(stream, list);
             }
         }
 
-        public static List<Worker> Deserialize(List<Worker> workers, string path)
+        public static List<T> Deserialize<T>(List<T> list, string path)
         {
-            List<Worker> list;
+            List<T> newlist;
             List<Type> workerTypes = new List<Type>();
-            foreach (Worker worker in workers)
+            foreach (T worker in list)
             {
                 Type type = worker.GetType();
                 if (!workerTypes.Contains(type))
@@ -49,10 +49,10 @@ namespace Workers_salary
             XmlSerializer serializer = new XmlSerializer(typeof(List<Worker>), workerTypes.ToArray());
             using (Stream stream = new FileStream($"{path}\\save.xml", FileMode.Open))
             {
-                list = (List<Worker>)serializer.Deserialize(stream);
+                newlist = (List<T>)serializer.Deserialize(stream);
             }
 
-            return list;
+            return newlist;
         }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.IO;
 using System.Media;
-using System.Threading;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
@@ -14,35 +9,35 @@ namespace HomeWork
 {
     static class Game
     {
-        public static BufferedGraphicsContext context;
-        public static BufferedGraphics buffer;
+        private static BufferedGraphicsContext _context;
+        public static BufferedGraphics Buffer;
 
-        public static int Width { get; set; }
-        public static int Height { get; set; }
+        public static int Width { get; private set; }
+        public static int Height { get; private set; }
 
-        private static BaseObject[] objs;
+        private static BaseObject[] _objs;
         private static List<Bullet> bullet = new List<Bullet>();
         private static List<Asteroid> asteroids = new List<Asteroid>();
-        private static HealingBox[] healingBoxs;
+        private static HealingBox[] _healingBoxs;
         public static Random rnd = new Random(DateTime.Now.Millisecond);
-        static Timer timer = new Timer();
-        public static int GamePoints = 0;
-        static Ship ship = new Ship(new Point(10,400),new Point(5,5),new Size(10,10));
+        private static Timer _timer = new Timer();
+        public static int GamePoints;
+        private static Ship _ship = new Ship(new Point(10,400),new Point(5,5),new Size(10,10));
         public static bool NewGame = true;
         private static int _maxAsteroids = 3;
 
-        static public void Init(Form form)
+        public static void Init(Form form)
         {
             if (form.Height >= 1000|| form.Width >= 1000)
             {
                 throw new ArgumentOutOfRangeException();
             }
             Graphics g;
-            context = BufferedGraphicsManager.Current;
+            _context = BufferedGraphicsManager.Current;
             g = form.CreateGraphics();
             Width = form.Width;
             Height = form.Height;
-            buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
+            Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
             Ship.MessageEnd += Finish;
             Ship.JournalMessager += Journals.ConsoleJournal;
@@ -51,9 +46,9 @@ namespace HomeWork
             BaseObject.JournalMessager += Journals.FileJournal;
             form.KeyDown += Form_KeyDown;
 
-            timer.Interval = 50;
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            _timer.Interval = 50;
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
         }
 
         private static void Form_KeyDown(object sender, KeyEventArgs e)
@@ -62,17 +57,17 @@ namespace HomeWork
             {
                 if (bullet.Count <= 10)
                 {
-                    bullet.Add(new Bullet(new Point(ship.Rect.X + 10, ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1)));
+                    bullet.Add(new Bullet(new Point(_ship.Rect.X + 10, _ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1)));
                 }
             }
 
             if (e.KeyCode == Keys.Up)
             {
-                ship.Up();
+                _ship.Up();
             }
             if (e.KeyCode == Keys.Down)
             {
-                ship.Down();
+                _ship.Down();
             }
         }
 
@@ -82,16 +77,16 @@ namespace HomeWork
             Update();
         }
 
-        static public void Draw()
+        public static void Draw()
         {
-            buffer.Graphics.Clear(Color.Black);
-            foreach (BaseObject obj in objs)
+            Buffer.Graphics.Clear(Color.Black);
+            foreach (BaseObject obj in _objs)
             {
                 obj.Draw();
             }
             foreach (Asteroid ast in asteroids)
             {
-                if (ast != null) ast.Draw();
+                ast?.Draw();
             }
 
             foreach (Bullet b in bullet)
@@ -99,26 +94,23 @@ namespace HomeWork
                 b.Draw();
             }
 
-            foreach (HealingBox box in healingBoxs)
+            foreach (HealingBox box in _healingBoxs)
             {
-                if (box != null)
-                {
-                    box.Draw();
-                }
+                box?.Draw();
             }
-            ship.Draw();
-            buffer.Graphics.DrawString("Energy: " + ship.Energy, SystemFonts.DefaultFont,Brushes.White,0,0);
-            buffer.Graphics.DrawString("Points: " + GamePoints, SystemFonts.DefaultFont, Brushes.White, 0, 12);
-            buffer.Render();
+            _ship.Draw();
+            Buffer.Graphics.DrawString("Energy: " + _ship.Energy, SystemFonts.DefaultFont,Brushes.White,0,0);
+            Buffer.Graphics.DrawString("Points: " + GamePoints, SystemFonts.DefaultFont, Brushes.White, 0, 12);
+            Buffer.Render();
         }
 
-        static public void Update()
+        private static void Update()
         {
             if (GamePoints > 20)
             {
-                ship.Win();
+                _ship.Win();
             }
-            foreach (BaseObject obj in objs)
+            foreach (BaseObject obj in _objs)
             {
                 obj.Update();
             }
@@ -157,17 +149,16 @@ namespace HomeWork
                             bullet.RemoveAt(j);
                             j--;
                             GamePoints++;
-                            continue;
                         }
                     }
 
-                    if (i >= 0 && asteroids.Count > 0 && ship.Collision(asteroids[i]))
+                    if (i >= 0 && asteroids.Count > 0 && _ship.Collision(asteroids[i]))
                     {
-                        ship.EnergyLow(asteroids[i].Power);
+                        _ship.EnergyLow(asteroids[i].Power);
                         SystemSounds.Asterisk.Play();
-                        if (ship.Energy <= 0)
+                        if (_ship.Energy <= 0)
                         {
-                            ship.Die();
+                            _ship.Die();
                         }
                         asteroids.RemoveAt(i);
                         i--;
@@ -175,31 +166,30 @@ namespace HomeWork
                 }
             }
 
-            for (int i = 0; i < healingBoxs.Length; i++)
+            for (int i = 0; i < _healingBoxs.Length; i++)
             {
-                if (healingBoxs[i] != null)
+                if (_healingBoxs[i] != null)
                 {
-                    healingBoxs[i].Update();
-                    if (healingBoxs[i].Collision(ship))
+                    _healingBoxs[i].Update();
+                    if (_healingBoxs[i].Collision(_ship))
                     {
-                        ship.EnergyUp(rnd.Next(1,3));
-                        healingBoxs[i] = null;
+                        _ship.EnergyUp(rnd.Next(1,3));
+                        _healingBoxs[i] = null;
                     }
                 }
                 else
                 {
-                    healingBoxs[i] = new HealingBox();
+                    _healingBoxs[i] = new HealingBox();
                 }
             }
         }
 
-        static public void Load()
+        public static void Load()
         {
-            objs = new BaseObject[30];
-            for (int i = 0; i < objs.Length; i++)
+            _objs = new BaseObject[30];
+            for (int i = 0; i < _objs.Length; i++)
             {
-                int r = rnd.Next(5, 50);
-                objs[i] = new Star();
+                _objs[i] = new Star();
             }
 
             for (int i = 0; i < _maxAsteroids; i++)
@@ -207,26 +197,26 @@ namespace HomeWork
                 asteroids.Add(new Asteroid());
             }
 
-            healingBoxs = new HealingBox[1];
-            for (int i = 0; i < healingBoxs.Length; i++)
+            _healingBoxs = new HealingBox[1];
+            for (int i = 0; i < _healingBoxs.Length; i++)
             {
-                healingBoxs[i] = new HealingBox();
+                _healingBoxs[i] = new HealingBox();
             }
         }
 
-        public static void Finish(EnumEnds e)
+        private static void Finish(EnumEnds e)
         {
-            timer.Stop();
+            _timer.Stop();
             switch (e)
             {
                 case EnumEnds.Loss:
-                    buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+                    Buffer.Graphics.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
                     break;
                 case EnumEnds.Win:
-                    buffer.Graphics.DrawString("You Win!", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+                    Buffer.Graphics.DrawString("You Win!", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
                     break;
             }
-            buffer.Render();
+            Buffer.Render();
         }
 
     }

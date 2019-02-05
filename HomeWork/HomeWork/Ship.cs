@@ -34,7 +34,7 @@ namespace HomeWork
 
         public override void Draw()
         {
-            Game.buffer.Graphics.FillEllipse(Brushes.Wheat,pos.X,pos.Y,size.Width,size.Height);
+            Game.Buffer.Graphics.FillEllipse(Brushes.Wheat,pos.X,pos.Y,size.Width,size.Height);
         }
 
         public override void Update()

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork", "HomeWork\HomeWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workers_salary", "Workers_salary\Workers_salary.csproj", "{FE245BCA-CF28-441A-BA5F-7ABC50118AC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWorkWPF", "..\HomeWorkWPF\HomeWorkWPF.csproj", "{7D34535D-CD37-47F0-B303-F9AC53095AD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FE245BCA-CF28-441A-BA5F-7ABC50118AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE245BCA-CF28-441A-BA5F-7ABC50118AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE245BCA-CF28-441A-BA5F-7ABC50118AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D34535D-CD37-47F0-B303-F9AC53095AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D34535D-CD37-47F0-B303-F9AC53095AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D34535D-CD37-47F0-B303-F9AC53095AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D34535D-CD37-47F0-B303-F9AC53095AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

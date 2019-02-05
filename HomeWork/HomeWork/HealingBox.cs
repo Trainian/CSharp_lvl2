@@ -23,7 +23,7 @@ namespace HomeWork
 
         public override void Draw()
         {
-            Game.buffer.Graphics.FillRectangle(Brushes.Green,pos.X,pos.Y,size.Width,size.Height);
+            Game.Buffer.Graphics.FillRectangle(Brushes.Green,pos.X,pos.Y,size.Width,size.Height);
         }
 
         public override void Update()
