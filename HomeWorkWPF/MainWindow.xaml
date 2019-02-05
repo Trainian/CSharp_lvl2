@@ -39,7 +39,17 @@
             </StackPanel>
         </Border>
         <Border Grid.ColumnSpan="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1">
-
+            <StackPanel>
+                <StatusBar Margin="0 130">
+                    <StatusBarItem>
+                        <Label x:Name="StatusBarWorkerName"></Label>
+                    </StatusBarItem>
+                    <Separator/>
+                    <StatusBarItem>
+                        <Label x:Name="StatusBarWorkerId"></Label>
+                    </StatusBarItem>
+                </StatusBar>
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

@@ -21,11 +21,13 @@ namespace HomeWorkWPF
     {
         private Employee _employee;
         private MainWindow _win;
-        public WorkersEdit(MainWindow win,Employee employee)
+        private bool _isNew;
+        public WorkersEdit(MainWindow win,Employee employee, bool isNew)
         {
             InitializeComponent();
             this._win = win;
             this._employee = employee;
+            this._isNew = isNew;
             foreach (Department department in Model.ListDepartments)
             {
                 DepartmentComboBoxName.Items.Add(department);
@@ -41,6 +43,10 @@ namespace HomeWorkWPF
             _employee.FIO = FIOTextBox.Text;
             _employee.Age = Int32.Parse(AgeTextBox.Text);
             _employee.DepartmentId = DepartmentComboBoxName.SelectedIndex;
+            if (_isNew)
+            {
+                Model.ListEmployees.Add(_employee);
+            }
             _win.Update();
             this.Close();
         }

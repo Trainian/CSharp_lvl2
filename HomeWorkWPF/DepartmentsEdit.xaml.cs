@@ -21,11 +21,13 @@ namespace HomeWorkWPF
     {
         private MainWindow _win;
         private Department _department;
-        public DepartmentsEdit(MainWindow win, Department department)
+        private bool _isNew;
+        public DepartmentsEdit(MainWindow win, Department department, bool isNew)
         {
             InitializeComponent();
             this._win = win;
             _department = department;
+            _isNew = isNew;
             IdTextBox.Text = department.Id != -1 ? department.Id.ToString() : (Model.ListDepartments.Count + 1).ToString();
             TitleTextBox.Text = department.Title.ToString();
         }
@@ -34,6 +36,10 @@ namespace HomeWorkWPF
         {
             _department.Title = TitleTextBox.Text.ToString();
             _department.Id = Int32.Parse(IdTextBox.Text);
+            if (_isNew)
+            {
+                Model.ListDepartments.Add(_department);
+            }
             _win.Update();
             this.Close();
         }

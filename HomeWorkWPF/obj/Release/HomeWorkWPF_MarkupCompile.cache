@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Release\
 HomeWorkWPF
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\App.xaml
 31957997681
 
-14134911071
+101032270339
 13-1662647192
 DepartmentsEdit.xaml;MainWindow.xaml;WorkersEdit.xaml;
 
