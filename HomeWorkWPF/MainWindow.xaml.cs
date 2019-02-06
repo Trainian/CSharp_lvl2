@@ -24,8 +24,9 @@ namespace HomeWorkWPF
         public MainWindow()
         {
             InitializeComponent();
+            ListViewName.ItemsSource = Model.ListEmployees;
+            ComboBoxName.ItemsSource = Model.ListDepartments;
             Model.CreateModel();
-            Update();
         }
 
         private void ListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,20 +73,8 @@ namespace HomeWorkWPF
 
         public void Update()
         {
-            ListViewName.Items.Clear();
-            ComboBoxName.Items.Clear();
-            foreach (Employee employee in Model.ListEmployees)
-            {
-                ListViewName.Items.Add(employee);
-            }
-            ListViewName.SelectedIndex = 0;
-
-            foreach (Department department in Model.ListDepartments)
-            {
-                ComboBoxName.Items.Add(department);
-            }
-            ComboBoxName.SelectedIndex = 0;
-
+            ListViewName.Items.Refresh();
+            ComboBoxName.Items.Refresh();
         }
 
         private void StatusBarChange()
@@ -93,6 +82,7 @@ namespace HomeWorkWPF
             StatusBarWorkerName.Content = $"{ListViewName.SelectedItem}";
             StatusBarWorkerId.Content = $"id - {ComboBoxName.SelectedIndex}";
         }
+
     }
 
 }

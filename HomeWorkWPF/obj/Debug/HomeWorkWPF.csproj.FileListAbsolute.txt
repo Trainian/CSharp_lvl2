@@ -17,3 +17,4 @@ C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\Departmen
 C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\WorkersEdit.g.cs
 C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\DepartmentsEdit.baml
 C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\WorkersEdit.baml
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\HomeWorkWPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
