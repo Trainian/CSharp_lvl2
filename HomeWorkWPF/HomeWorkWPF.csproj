@@ -58,6 +58,7 @@
     <Compile Include="DepartmentsEdit.xaml.cs">
       <DependentUpon>DepartmentsEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="WorkersEdit.xaml.cs">
       <DependentUpon>WorkersEdit.xaml</DependentUpon>
     </Compile>
