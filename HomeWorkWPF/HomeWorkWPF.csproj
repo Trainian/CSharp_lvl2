@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
     <Compile Include="DepartmentsEdit.xaml.cs">
       <DependentUpon>DepartmentsEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modal\ServerDB.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="WorkersEdit.xaml.cs">
       <DependentUpon>WorkersEdit.xaml</DependentUpon>

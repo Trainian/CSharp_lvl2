@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeWorkWPF"
         mc:Ignorable="d"
-        Title="Редактирование рабочих" Height="250" Width="400">
+        Title="Редактирование рабочих" Height="250" Width="400" Closed="Close_Click">
     <StackPanel>
        <StackPanel.Resources>
            <Style TargetType="StackPanel">
@@ -17,7 +17,7 @@
         <Label>Возраст:</Label>
         <TextBox x:Name="AgeTextBox"></TextBox>
         <Label>Компания:</Label>
-        <ComboBox x:Name="DepartmentComboBoxName"></ComboBox>
+        <ComboBox x:Name="DepartmentComboBoxName" DisplayMemberPath="Department"></ComboBox>
         <Button Margin="0 10" Height="50" FontSize="26" FontWeight="DemiBold" Click="Save_Click">Save</Button>
     </StackPanel>
 </Window>

@@ -1,0 +1,17 @@
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\bin\Debug\DataBase.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\bin\Debug\DataBase.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.csprojAssemblyReference.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\MainWindow.g.cs
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\App.g.cs
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase_MarkupCompile.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase_MarkupCompile.lref
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.Properties.Resources.resources
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.csproj.GenerateResource.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.csproj.CoreCompileInputs.cache
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.exe
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.pdb
+C:\Users\dimon\Source\Repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\EditWindow.g.cs
+C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\EditWindow.baml
+C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\MainWindow.baml
+C:\Users\dimon\source\repos\Trainian\CSharp_lvl2\DataBase\DataBase\obj\Debug\DataBase.g.resources

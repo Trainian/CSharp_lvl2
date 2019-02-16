@@ -21,15 +21,15 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" BorderThickness="1" Height="250" Width="450" Grid.Column="0"  Grid.Row="0">
             <StackPanel>
-                <ListView x:Name="ListViewName" SelectionChanged="ListView_OnSelectionChanged" Height="220">
+                <ListView x:Name="ListViewName" SelectionChanged="OnSelectionChanged" Height="220" ItemsSource="{Binding}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Работник" DisplayMemberBinding="{Binding FIO}"/>
-                            <GridViewColumn Header="Возраст" DisplayMemberBinding="{Binding Age}"/>
+                            <GridViewColumn Header="Возраст" DisplayMemberBinding="{Binding BirthDate , StringFormat=dd.MM.yyyy}"/>
                             <GridViewColumn Header="Предприятие">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding DepartmentId, Converter={StaticResource IdConverter}}" Foreground="Blue" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Department_id}" Foreground="Blue" FontWeight="Bold"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -37,16 +37,17 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel Orientation="Horizontal">
-                    <Button Width="150" Margin="5" Click="WorkersButtonChange_Click">Изменить</Button>
-                    <Button Width="150" Margin="5" Click="WorkersButtonAdd_Click">Добавить</Button>
+                    <Button Width="138" Margin="5" Click="WorkersButtonChange_Click">Изменить</Button>
+                    <Button Width="138" Margin="5" Click="WorkersButtonAdd_Click" Content="Добавить"/>
+                    <Button Width="138" Margin="5" Click="WorkersButtonDelete_Click" Content="Удалить"/>
                 </StackPanel>
             </StackPanel>
         </Border>
         <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
             <StackPanel>
-                <ComboBox x:Name="ComboBoxName" HorizontalAlignment="Left" Margin="5,5,5,160" VerticalAlignment="Top" SelectionChanged="ComboBox_OnSelectionChanged" Width="210"/>
-                <Button Content="Изменить" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="210" Click="DepartmentButtonChange_Click"/>
-                <Button Content="Добавить" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="210" Click="DepartmentButtonAdd_Click"/>
+                <ComboBox x:Name="ComboBoxName" DisplayMemberPath="Department" HorizontalAlignment="Left" Margin="5,5,5,160" VerticalAlignment="Top" SelectionChanged="OnSelectionChanged" Width="210"/>
+                <Button Content="Изменить" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="210" Click="DepartmentButtonChange_Click" IsEnabled="False"/>
+                <Button Content="Добавить" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="210" Click="DepartmentButtonAdd_Click" IsEnabled="False"/>
             </StackPanel>
         </Border>
         <Border Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1">
