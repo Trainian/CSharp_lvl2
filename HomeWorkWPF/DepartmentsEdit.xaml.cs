@@ -40,7 +40,6 @@ namespace HomeWorkWPF
             {
                 Model.ListDepartments.Add(_department);
             }
-            _win.Update();
             this.Close();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HomeWorkWPF.Modal;
 
 namespace HomeWorkWPF
 {
@@ -19,36 +21,37 @@ namespace HomeWorkWPF
     /// </summary>
     public partial class WorkersEdit : Window
     {
-        private Employee _employee;
-        private MainWindow _win;
-        private bool _isNew;
-        public WorkersEdit(MainWindow win,Employee employee, bool isNew)
+        private DataRow _drv;
+        public WorkersEdit(DataRow drv)
         {
+            _drv = drv;
             InitializeComponent();
-            this._win = win;
-            this._employee = employee;
-            this._isNew = isNew;
-            foreach (Department department in Model.ListDepartments)
-            {
-                DepartmentComboBoxName.Items.Add(department);
-            }
+            DepartmentComboBoxName.ItemsSource = ServerDB.dtDepartments.DefaultView;
+            FillDataRow();
+        }
 
-            FIOTextBox.Text = employee.FIO;
-            AgeTextBox.Text = employee.Age.ToString();
-            DepartmentComboBoxName.SelectedIndex = employee.DepartmentId;
+        private void FillDataRow()
+        {
+            FIOTextBox.Text = _drv["FIO"].ToString();
+            AgeTextBox.Text = $"{_drv["BirthDate"].ToString()}";
+            if (!_drv.IsNull("Department_id"))
+                DepartmentComboBoxName.SelectedIndex = Int32.Parse(_drv["Department_id"].ToString()) - 1;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            _employee.FIO = FIOTextBox.Text;
-            _employee.Age = Int32.Parse(AgeTextBox.Text);
-            _employee.DepartmentId = DepartmentComboBoxName.SelectedIndex;
-            if (_isNew)
+            _drv["FIO"] = FIOTextBox.Text;
+            _drv["BirthDate"] = AgeTextBox.Text;
+            _drv["Department_id"] = DepartmentComboBoxName.SelectedIndex + 1;
+            DialogResult = true;
+        }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            if (DialogResult == null)
             {
-                Model.ListEmployees.Add(_employee);
+                DialogResult = false;
             }
-            _win.Update();
-            this.Close();
         }
     }
 }
